@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cluxsp8hboyjk"]
+
+[ext_resource type="Texture2D" uid="uid://dgwce2otx3lse" path="res://assets/PlanetMenuFleetpanel.png" id="1_gecsq"]
+
+[node name="planet_menu_fleetpanel" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gecsq")
+
+[node name="FleetName" type="Label" parent="."]
+offset_left = -461.0
+offset_top = -117.0
+offset_right = -7.0
+offset_bottom = -14.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "fleet_name"
+
+[node name="FleetShipCount" type="Label" parent="."]
+offset_left = 56.0
+offset_top = -112.0
+offset_right = 155.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "00"

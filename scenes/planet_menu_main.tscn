@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcyk8lh6raagx"]
+
+[ext_resource type="Texture2D" uid="uid://d1v17tinrqayt" path="res://assets/PlanetMenu.png" id="1_ktee4"]
+[ext_resource type="Script" path="res://scripts/planet_menu_main.gd" id="1_no55i"]
+
+[node name="planet_menu_main" type="Area2D"]
+script = ExtResource("1_no55i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ktee4")
+
+[node name="PlanetName" type="Label" parent="."]
+offset_left = -1005.0
+offset_top = -495.0
+offset_right = -162.0
+offset_bottom = -290.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 150
+text = "Name"
+
+[node name="PlanetControl" type="Label" parent="."]
+offset_left = -1016.0
+offset_top = -288.0
+offset_right = -207.0
+offset_bottom = -83.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 130
+text = "Control"

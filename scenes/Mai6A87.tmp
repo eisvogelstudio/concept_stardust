@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhndsj1n22f6g"]
+
+[ext_resource type="PackedScene" uid="uid://qwmkxxxgfa5i" path="res://scenes/planet.tscn" id="1_3efc5"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_15m4l"]
+
+[node name="Galactic Karte" type="Node2D"]
+
+[node name="Planeten" type="Node" parent="."]
+
+[node name="Planet" parent="Planeten" instance=ExtResource("1_3efc5")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.01, 0.01)
+script = ExtResource("2_15m4l")
+
+[node name="DoubleClick" type="Timer" parent="Camera2D"]
+
+[connection signal="timeout" from="Camera2D/DoubleClick" to="Camera2D" method="_on_double_click_timeout"]

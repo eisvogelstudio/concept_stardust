@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://qwmkxxxgfa5i"]
+
+[ext_resource type="Texture2D" uid="uid://co10665pcxalx" path="res://assets/Terran1.png" id="1_bkmj3"]
+[ext_resource type="Script" path="res://scripts/planet.gd" id="1_e51mg"]
+[ext_resource type="PackedScene" uid="uid://dcyk8lh6raagx" path="res://scenes/planet_menu_main.tscn" id="3_2l7vo"]
+
+[sub_resource type="GDScript" id="GDScript_f00e1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d5xvp"]
+radius = 920.0
+
+[node name="Planet" type="Area2D"]
+script = ExtResource("1_e51mg")
+
+[node name="PlanetSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_bkmj3")
+script = SubResource("GDScript_f00e1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d5xvp")
+
+[node name="planet_menu_main" parent="." instance=ExtResource("3_2l7vo")]
+position = Vector2(3, -1735)
