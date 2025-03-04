@@ -12,7 +12,14 @@ var Fleet = load("res://scripts/fleet.gd")
 
 var iszoomed = false
 
+
+
 func _ready() -> void: 
+	
+	
+	fleetlist.append(Fleet.new("Tango-Flotte", 1, ["ISD-1234"]))
+	fleetlist.append(Fleet.new("Delta-Flotte", 2, ["X-Wing", "Y-Wing"]))
+	fleetlist.append(Fleet.new("Lima-Flotte", 7, ["ISD-3325", "ISD-9843", "ISD-7622", "Gozanti-6659", "Gozanti-9421", "Victory-3353", "Victory-3677"]))
 	fleetlist.append(Fleet.new("Tango-Flotte", 1, ["ISD-1234"]))
 	fleetlist.append(Fleet.new("Delta-Flotte", 2, ["X-Wing", "Y-Wing"]))
 	fleetlist.append(Fleet.new("Lima-Flotte", 7, ["ISD-3325", "ISD-9843", "ISD-7622", "Gozanti-6659", "Gozanti-9421", "Victory-3353", "Victory-3677"]))
@@ -28,18 +35,20 @@ func _input_event(viewport, event, shape_idx):
 		# Tween erstellen und starten
 		if iszoomed == false:
 			var tween = cam.create_tween()
-			tween.tween_property(cam, "position", position, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			tween.tween_property(cam, "position", position + Vector2(1300, 0), 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 			tween.tween_property(cam, "zoom", Vector2(0.2, 0.2), 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			iszoomed = true
+			$planet_menu_main.create_fleet_panels()
 			
 			await tween.finished
 			cam.cameracontrol = false
-			cam.position = position
+			cam.position = position + Vector2(1300, 0)
 			$planet_menu_main.visible = true
 		else:
 			iszoomed = false
 			cam.cameracontrol = true
 			cam.position = position
 			$planet_menu_main.visible = false
+			$planet_menu_main.delete_fleet_panels()
 		
 		

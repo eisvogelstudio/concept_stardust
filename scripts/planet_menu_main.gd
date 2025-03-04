@@ -1,32 +1,59 @@
 extends Area2D
 var planet_type_names = ["Rural", "City", "Lava", "Ice"]
 var planet_menu_fleetpanel_scene = preload("res://scenes/planet_menu_fleetpanel.tscn")
+var fleetpanels = []
+
+var scroll = 0
+
 
 func _ready() -> void:
 	$"PlanetName".text = get_parent().planet_name 
 	$"PlanetControl".text = get_parent().planet_control 
 	$"PlanetType".text = planet_type_names[get_parent().planet_type] 
-
+	create_fleet_panels()
 	
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("scroll_down") && $"../../../Camera2D".cameracontrol == false && visible == true:
+		scroll -= 0.3
 	
-	create_fleet_panels()
+	if Input.is_action_just_pressed("scroll_up") && $"../../../Camera2D".cameracontrol == false && visible == true && scroll <= -0.3:
+		scroll += 0.3
+	
+	
+	
+	update_fleet_panels()
+	
 	
 	pass
 
 func create_fleet_panels():
-	var start_y = -350  # Anfangskoordinate Y
-	var y_offset = 275  # Y-Abstand zwischen den Panels (negativ verschieben)
-	var x_start = 430  # Startwert für X der ersten Flotte
-	var x_offset = -80  # X-Abstand zwischen den Panels (+275 pro Panel)
+	var start = Vector2(430, -350)
+	var offset = Vector2(-80, 275)
 	var planet_menu_fleetpanel_count = get_parent().fleetlist.size()
 	
 	for i in range(planet_menu_fleetpanel_count):
 		var fleet_panel = planet_menu_fleetpanel_scene.instantiate()  # Neues Panel instanziieren
-		var y_pos = start_y + (i * y_offset)  # Neue Y-Koordinate berechnen (mit -90 Verschiebung)
-		var x_pos = x_start + (i * x_offset)  # Neue X-Koordinate berechnen (+275 pro Panel)
-
-		# Setze die Position des Panels
-		fleet_panel.position = Vector2(x_pos, y_pos)
+		var pos = start +(i * offset)
+		
+		fleet_panel.position = pos
 		add_child(fleet_panel)  # Panel zum Node hinzufügen
+		fleet_panel.panel_number = i
+		fleet_panel.add_panel_info()
+		fleetpanels.append(fleet_panel)
+
+func update_fleet_panels():
+	if fleetpanels.size() == 0:
+		return
+	var start = Vector2(430, -350)
+	var direction = Vector2(-80, 275)
+	var planet_menu_fleetpanel_count = get_parent().fleetlist.size()
+
+	for i in range(planet_menu_fleetpanel_count):
+		fleetpanels[i].position = start + (i + scroll) * direction
+
+func delete_fleet_panels():
+	for panel in fleetpanels:
+		panel.queue_free()  # Löscht das Panel
+	fleetpanels.clear()  # Leert die Liste der Panels
+	pass

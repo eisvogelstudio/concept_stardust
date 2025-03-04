@@ -29,12 +29,12 @@ func _process(delta: float) -> void:
 		position.x = clamp(position.x + leftright * adjusted_speed * delta, camrestrictionleft, camrestrictionright)
 
 	# Zoom der Kamera mit Begrenzung, jetzt durch Action-Events
-	if Input.is_action_just_pressed("zoom_out") && cameracontrol == true:
+	if Input.is_action_just_pressed("scroll_down") && cameracontrol == true:
 		var new_zoom = zoom.x - zoomspeed  # Ranzoomen
 		new_zoom = clamp(new_zoom, minzoom, maxzoom)  # Begrenze den Zoom
 		zoom = Vector2(new_zoom, new_zoom)  # X und Y synchron ändern
 	
-	if Input.is_action_just_pressed("zoom_in") && cameracontrol == true:
+	if Input.is_action_just_pressed("scroll_up") && cameracontrol == true:
 		var new_zoom = zoom.x + zoomspeed  # Herauszoomen
 		new_zoom = clamp(new_zoom, minzoom, maxzoom)  # Begrenze den Zoom
 		zoom = Vector2(new_zoom, new_zoom)  # X und Y synchron ändern
@@ -83,8 +83,8 @@ func zoomonmouse():
 		var target_zoom = Vector2(0.2, 0.2)  # Zielzoom-Wert
 		
 		# Bewege die Kamera zur Zielposition und ändere gleichzeitig den Zoom
-		tween.tween_property(self, "position", target_position, 1.0)  # Bewege die Kamera
-		tween.tween_property(self, "zoom", target_zoom, 1.0)  # Ändere den Zoom
+		tween.tween_property(self, "position", target_position, 1.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)  # Bewege die Kamera
+		tween.tween_property(self, "zoom", target_zoom, 1.0).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)  # Ändere den Zoom
 		
 		# Setze die Übergangstypen (für beide Animationen)
 		tween.set_trans(Tween.TRANS_LINEAR)  # Übergangstyp setzen
