@@ -17,11 +17,13 @@ script = ExtResource("2_15m4l")
 position = Vector2(1040, -2344)
 planet_name = "Fondor"
 planet_control = "Imperial"
+planet_type = 1
 
 [node name="Planet2" parent="Planeten" instance=ExtResource("1_3efc5")]
 position = Vector2(7946, 2708)
-planet_name = "Alderaan"
+planet_name = "Mustafar"
 planet_control = "Imperial"
+planet_type = 2
 
 [node name="Planet3" parent="Planeten" instance=ExtResource("1_3efc5")]
 position = Vector2(-8398, 3293)
@@ -30,7 +32,8 @@ planet_control = "Imperial"
 
 [node name="Planet4" parent="Planeten" instance=ExtResource("1_3efc5")]
 position = Vector2(-6667, -9938)
-planet_name = "Yavin 4"
-planet_control = "Rebbelion"
+planet_name = "Hoth"
+planet_control = "Rebellion"
+planet_type = 3
 
 [connection signal="timeout" from="Camera2D/DoubleClick" to="Camera2D" method="_on_double_click_timeout"]

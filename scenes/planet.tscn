@@ -1,23 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://qwmkxxxgfa5i"]
+[gd_scene load_steps=9 format=3 uid="uid://qwmkxxxgfa5i"]
 
 [ext_resource type="Texture2D" uid="uid://co10665pcxalx" path="res://assets/Terran1.png" id="1_bkmj3"]
 [ext_resource type="Script" path="res://scripts/planet.gd" id="1_e51mg"]
+[ext_resource type="Texture2D" uid="uid://ccltintkuoqdw" path="res://assets/City1.png" id="2_jtv0j"]
 [ext_resource type="PackedScene" uid="uid://dcyk8lh6raagx" path="res://scenes/planet_menu_main.tscn" id="3_2l7vo"]
+[ext_resource type="Texture2D" uid="uid://gquy30hm5rej" path="res://assets/Ice1.png" id="3_r6g8k"]
+[ext_resource type="Texture2D" uid="uid://hdv6hgkdv2im" path="res://assets/Lava1.png" id="4_b7yog"]
 
-[sub_resource type="GDScript" id="GDScript_f00e1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qf662"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bkmj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jtv0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b7yog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r6g8k")
+}],
+"loop": true,
+"name": &"PlanetTextures",
+"speed": 1.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d5xvp"]
-radius = 920.0
+radius = 971.019
 
 [node name="Planet" type="Area2D"]
 script = ExtResource("1_e51mg")
 
-[node name="PlanetSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_bkmj3")
-script = SubResource("GDScript_f00e1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qf662")
+animation = &"PlanetTextures"
+frame = 2
+frame_progress = 0.694215
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d5xvp")
 
 [node name="planet_menu_main" parent="." instance=ExtResource("3_2l7vo")]
-position = Vector2(3, -1735)
+position = Vector2(77, -1735)
