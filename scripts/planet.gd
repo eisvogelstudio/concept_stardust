@@ -15,6 +15,7 @@ var iszoomed = false
 func _ready() -> void: 
 	fleetlist.append(Fleet.new("Tango-Flotte", 1, ["ISD-1234"]))
 	fleetlist.append(Fleet.new("Delta-Flotte", 2, ["X-Wing", "Y-Wing"]))
+	fleetlist.append(Fleet.new("Lima-Flotte", 7, ["ISD-3325", "ISD-9843", "ISD-7622", "Gozanti-6659", "Gozanti-9421", "Victory-3353", "Victory-3677"]))
 	$planet_menu_main.visible = false
 	$AnimatedSprite2D.frame = planet_type
 	pass
